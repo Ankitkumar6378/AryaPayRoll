@@ -177,8 +177,11 @@ currencyValidationMessage = {
       let cleanCompanyForm = this.util.cleanFormLevelOne(this.companyForm);
     if (this.companyForm.valid) {
       this.api.submitCompanyData(cleanCompanyForm.value,this.selectCountryName,this.selectStateName).subscribe((data) => {
+
         if(data.status == "success"){
-          sessionStorage.setItem('companyId',data.company._id);
+          sessionStorage.setItem('companyId',data.data._id);
+          window.location.replace('/pages/dashboard/company-list');
+
 
           // Upload Company Logo
           let isCompanyLogo;

@@ -50,18 +50,19 @@ export class LoginComponent implements OnInit {
     try {
       if (this.loginForm.valid) {
         this.api.submitLogin(this.loginForm.value).subscribe((data) => {
+          console.log(data)
           if (data.status === "success"|| data.status === 200) {
-              localStorage.setItem('myVal',JSON.stringify(data.user.local.email));
-              localStorage.setItem("token", data.user._id);
+              localStorage.setItem('myVal',JSON.stringify(data.data.email));
+              localStorage.setItem("token", data.data._id);
               this.loginFlag = true;
               this.successMessage = data.message;
               this.flag = false;
               this.getCompanyList();
-              this.permissionAPI.permissionDetails().subscribe((data)=>{
-                if(data.status === 'success'){
-                  this.util.permissionRoleInfo = data.data;
-                }
-              })
+              // this.permissionAPI.permissionDetails().subscribe((data)=>{
+              //   if(data.status === 'success'){
+              //     this.util.permissionRoleInfo = data.data;
+              //   }
+              // })
           } else if (data.status === "error" || data.status === 404) {
             this.flag = true;
             this.errorMessageServer = data.message;

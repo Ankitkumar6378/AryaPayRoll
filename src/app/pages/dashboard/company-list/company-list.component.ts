@@ -41,8 +41,12 @@ export class CompanyListComponent implements OnInit {
     try {
       this.spinner.show();
       this.api.getIndividualData(sessionStorage.getItem('companyId')).subscribe(data => {
+        // console.log(data)
+        // this.individualCompanyData.push(data.data);
+
         if (data.status === 'success' || data.status === 200) {
          this.individualCompanyData.push(data.data);
+         console.log(this.individualCompanyData)
          setTimeout(() => {
           this.spinner.hide();
          },1000)

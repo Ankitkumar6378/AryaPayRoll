@@ -79,6 +79,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+
  //Method for filter company Name by companyId
   filterCompanyId() {
     let companyId = sessionStorage.getItem('companyId');
